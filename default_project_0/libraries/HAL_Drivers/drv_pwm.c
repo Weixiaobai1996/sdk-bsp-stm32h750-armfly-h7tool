@@ -9,6 +9,9 @@
  */
 
 #include <board.h>
+#include<rtthread.h>
+#include<rtdevice.h>
+
 #ifdef RT_USING_PWM
 #include "drv_config.h"
 
@@ -189,10 +192,10 @@ static rt_err_t drv_pwm_get(TIM_HandleTypeDef *htim, struct rt_pwm_configuration
     if (htim->Instance == TIM9 || htim->Instance == TIM10 || htim->Instance == TIM11)
 #elif defined(SOC_SERIES_STM32L4)
     if (htim->Instance == TIM15 || htim->Instance == TIM16 || htim->Instance == TIM17)
-#elif defined(SOC_SERIES_STM32MP1)
-    if (htim->Instance == TIM4) 
 #elif defined(SOC_SERIES_STM32F1) || defined(SOC_SERIES_STM32F0) || defined(SOC_SERIES_STM32G0)
     if (0)
+#elif defined(SOC_SERIES_STM32H7)
+        if (htim->Instance == TIM5)
 #endif
     {
 #if !defined(SOC_SERIES_STM32F0) && !defined(SOC_SERIES_STM32G0)
@@ -236,10 +239,10 @@ static rt_err_t drv_pwm_set(TIM_HandleTypeDef *htim, struct rt_pwm_configuration
     if (htim->Instance == TIM9 || htim->Instance == TIM10 || htim->Instance == TIM11)
 #elif defined(SOC_SERIES_STM32L4)
     if (htim->Instance == TIM15 || htim->Instance == TIM16 || htim->Instance == TIM17)
-#elif defined(SOC_SERIES_STM32MP1)
-    if (htim->Instance == TIM4)
 #elif defined(SOC_SERIES_STM32F1) || defined(SOC_SERIES_STM32F0) || defined(SOC_SERIES_STM32G0)
     if (0)
+#elif defined(SOC_SERIES_STM32H7)
+    if (htim->Instance == TIM5)
 #endif
     {
 #if !defined(SOC_SERIES_STM32F0) && !defined(SOC_SERIES_STM32G0)
